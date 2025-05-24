@@ -8,6 +8,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
+
 .container {
   max-width: 500px;
   margin: 40px auto;
@@ -16,6 +17,16 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
+
+.drink-card {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px;
+}
+
 
 h1 {
   text-align: center;
@@ -51,10 +62,19 @@ button:hover {
   background-color: #a65f23;
 }
 
+#result {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fef3c7;
+  border-left: 5px solid #f59e0b;
+  white-space: pre-wrap;
+}
+
 /* ⬇️ 加在這裡 */
 .heading-white {
   color: white;
   font-weight: bold;
+  text-align: center;
 }
 
 /* 導覽列樣式 */
@@ -103,11 +123,19 @@ button:hover {
   margin-top: 50px;
   font-size: 14px;
   color: #444;
+  word-wrap: break-word;
 }
+
 
 .white-text {
   color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 900px;
 }
+
 
 .social-icon {
   width: 28px;
@@ -120,4 +148,9 @@ button:hover {
   transform: scale(1.2);
 }
 
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
