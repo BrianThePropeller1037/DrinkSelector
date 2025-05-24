@@ -178,3 +178,12 @@ button:hover {
   margin: 40px auto;
 }
 
+.drink-fact {
+  max-width: 900px;             /* 統一寬度 */
+  margin: 40px auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
