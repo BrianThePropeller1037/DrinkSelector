@@ -53,4 +53,5 @@ def suggest():
         return jsonify({"error": "找不到符合條件的飲料"})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render 會提供 PORT 變數
+    app.run(host='0.0.0.0', port=port)
