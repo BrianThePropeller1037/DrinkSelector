@@ -5,75 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>飲料推薦系統</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-      body {
-        background-color: #fff8e1;
-        font-family: 'Segoe UI', sans-serif;
-      }
-      .drink-card {
-        background: #ffffff;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        padding: 30px;
-      }
-      .btn-drink {
-        background-color: #bc6c25;
-        color: white;
-      }
-      .btn-drink:hover {
-        background-color: #a65f23;
-      }
-      #result {
-        margin-top: 20px;
-        background-color: #fff3cd;
-        border-left: 5px solid #ffc107;
-        padding: 15px;
-        border-radius: 8px;
-        white-space: pre-wrap;
-      }
-    </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <header class="main-header">
     <nav class="navbar">
       <div class="navbar-title">🍹 飲料推薦系統</div>
-	  
       <div class="navbar-right">
         <ul class="navbar-menu">
           <li><a href="#motive">創作動機</a></li>
           <li><a href="#team">團隊成員</a></li>
         </ul>
-		<!-- GitHub -->
-        <a href="https://github.com/BrianThePropeller1037/DrinkSelector" target=_"blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="social-icon" width="24" height="24>
+        <a href="https://github.com/BrianThePropeller1037/DrinkSelector" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="social-icon">
         </a>
-
-        <!-- IG -->
         <a href="https://www.instagram.com/nptu.weirdos_0524/" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon" width="24" height="24>
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon">
         </a>
-
-        <!-- YouTube -->
         <a href="https://www.youtube.com/@NptuWeirdos0525" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="social-icon" width="24" height="24>
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="social-icon">
         </a>
-
-        <!-- FB -->
         <a href="https://www.facebook.com/profile.php?id=61576691521276" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="social-icon" width="24" height="24>
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="social-icon">
         </a>
+      </div>
     </nav>
   </header>
-  <div class="container my-5">
+
+  <div class="container-fluid py-5">
     <div class="drink-card mx-auto" style="max-width: 600px">
-      <h2 class="text-center mb-2 heading-orange">🍹 今天喝什麼❓</h2>
+      <h2 class="text-center mb-2 heading-white">🍹 今天喝什麼❓</h2>
       <p class="text-center text-muted mb-4">選擇困難症的救星❗</p>
       <form id="form">
         <div class="mb-3">
           <label class="form-label">預算 (台幣)</label>
           <input type="number" name="budget" class="form-control" required>
         </div>
-
         <div class="mb-3">
           <label class="form-label">選擇店家</label>
           <select name="store" class="form-select">
@@ -83,7 +50,6 @@
             {% endfor %}
           </select>
         </div>
-
         <div class="mb-3">
           <label class="form-label">飲料類別</label>
           <select name="category" class="form-select">
@@ -94,47 +60,46 @@
             <option>其他</option>
           </select>
         </div>
-
         <button class="btn btn-drink w-100" type="submit">☕️ 幫我想想！</button>
       </form>
-
       <div id="result"></div>
     </div>
   </div>
 
-<script>
-  document.getElementById('form').onsubmit = async function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    const res = await fetch('/suggest', {
-      method: 'POST',
-      body: formData
-    });
-    const data = await res.json();
-    const result = document.getElementById('result');
+  <section id="motive" class="white-text container mt-5">
+    <h3>創作動機</h3>
+    <p>大家都知道屏東是一個酷暑難耐的地方，在屏東，我相信大家都一定想趕快想到要喝甚麼飲料，而不是頂著37°C的體感溫度苦苦地想。<br>我們希望解決有選擇困難症的朋友在挑飲料時的煩惱，因此設計了這個系統...</p>
+  </section>
 
-    if (data.error) {
-      result.innerText = data.error;
-    } else {
-      const text = `推薦: ${data.store} 的「${data.drink}」<br>價格: $${data.price}<br>類別: ${data.category}`;
-      const mapsLink = `https://www.google.com/maps/search/${encodeURIComponent(data.store)}`;
-      const button = `<a href="${mapsLink}" target="_blank" class="btn btn-outline-primary mt-3">📍 找最近的 ${data.store}</a>`;
-      result.innerHTML = text + "<br>" + button;
-    }
-  };
-</script>
-<section id="motive" class="white-text">
-  <h3>創作動機</h3>
-  <p>大家都知道屏東是一個酷暑難耐的地方，在屏東，我相信大家都一定想趕快想到要喝甚麼飲料，而不是頂著37°C的體感溫度苦苦地想。<br>我們希望解決有選擇困難症的朋友在挑飲料時的煩惱，因此設計了這個系統...</p>
-</section>
+  <section id="team" class="white-text container mt-4">
+    <h3>團隊成員</h3>
+    <p>由周允奇、李彥槿、劉哲諺、邱彥程、邱柏耀組成的開發團隊...</p>
+  </section>
 
-<section id="team" class="white-text">
-  <h3>團隊成員</h3>
-  <p>由周允奇、李彥槿、劉哲諺、邱彥程、邱柏耀</p>
-</section>
+  <footer class="site-footer">
+    <p>© 2025 飲料推薦系統｜團隊成員：周允奇、李彥槿、劉哲諺、邱彥程、邱柏耀</p>
+    <p>如有建議請來信：brianchou92@gmail.com</p>
+  </footer>
 
-<footer class="site-footer">
-  <p>© 2025 飲料推薦系統｜團隊成員：周允奇、李彥槿、劉哲諺、邱彥程、邱柏耀</p>
-  <p>如有建議請來信：brianchou92@gmail.com</p>
-</footer>
+  <script>
+    document.getElementById('form').onsubmit = async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const res = await fetch('/suggest', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      const result = document.getElementById('result');
+      if (data.error) {
+        result.innerText = data.error;
+      } else {
+        const text = `推薦: ${data.store} 的「${data.drink}」<br>價格: $${data.price}<br>類別: ${data.category}`;
+        const mapsLink = `https://www.google.com/maps/search/${encodeURIComponent(data.store)}`;
+        const button = `<a href="${mapsLink}" target="_blank" class="btn btn-outline-primary mt-3">📍 找最近的 ${data.store}</a>`;
+        result.innerHTML = text + "<br>" + button;
+      }
+    };
+  </script>
 </body>
+</html>
