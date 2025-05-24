@@ -105,20 +105,19 @@ button:hover {
   color: #444;
 }
 
-.github-logo {
-  width: 21px;
-  height: 21px;
-  object-fit: contain; /* 確保不會被壓縮變形 */
-  margin-left: 10px;
-  transition: transform 0.2s ease;
-}
-
-
-.github-logo:hover {
-  transform: scale(1.1);
-}
-
 .white-text {
   color: white;
 }
+
+.social-icon {
+  width: 28px;
+  height: 28px;
+  margin-left: 12px;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
 
