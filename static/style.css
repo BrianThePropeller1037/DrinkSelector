@@ -108,11 +108,13 @@ button:hover {
 }
 
 .github-logo {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
+  object-fit: contain; /* 確保不會被壓縮變形 */
   margin-left: 10px;
   transition: transform 0.2s ease;
 }
+
 
 .github-logo:hover {
   transform: scale(1.1);
