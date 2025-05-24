@@ -72,18 +72,26 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById('form').onsubmit = async function (e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      const res = await fetch('/suggest', {
-        method: 'POST',
-        body: formData
-      });
-      const data = await res.json();
-      const result = document.getElementById('result');
-      result.innerText = data.error ? data.error :
-        `推薦: ${data.store} 的「${data.drink}」\n價格: $${data.price}\n類別: ${data.category}`;	
-    };
-  </script>
+<script>
+  document.getElementById('form').onsubmit = async function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const res = await fetch('/suggest', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    const result = document.getElementById('result');
+
+    if (data.error) {
+      result.innerText = data.error;
+    } else {
+      const text = `推薦: ${data.store} 的「${data.drink}」<br>價格: $${data.price}<br>類別: ${data.category}`;
+      const mapsLink = `https://www.google.com/maps/search/${encodeURIComponent(data.store)}`;
+      const button = `<a href="${mapsLink}" target="_blank" class="btn btn-outline-primary mt-3">📍 找最近的 ${data.store}</a>`;
+      result.innerHTML = text + "<br>" + button;
+    }
+  };
+</script>
+
 </body>
