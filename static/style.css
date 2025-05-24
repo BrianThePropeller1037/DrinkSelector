@@ -48,10 +48,8 @@ button:hover {
   background-color: #a65f23;
 }
 
-#result {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #fef3c7;
-  border-left: 5px solid #f59e0b;
-  white-space: pre-wrap;
+/* ⬇️ 加在這裡 */
+.heading-white {
+  color: white;
+  font-weight: bold;
 }
