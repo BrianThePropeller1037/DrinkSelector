@@ -1,5 +1,10 @@
 body {
-  background-color: #fefae0;
+  background-color: #fefae0; /* 原本背景色可以保留當備用 */
+  background-image: url("drinksbg.jpg");
+  background-size: cover;            /* 讓圖片鋪滿整個畫面 */
+  background-repeat: no-repeat;      /* 不要重複平鋪 */
+  background-attachment: fixed;      /* 捲動時背景不會移動 */
+  background-position: center center;/* 圖片置中 */
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
