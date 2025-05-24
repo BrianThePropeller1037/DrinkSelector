@@ -117,3 +117,8 @@ button:hover {
 .github-logo:hover {
   transform: scale(1.1);
 }
+
+.white-text {
+  color: white;
+}
+
