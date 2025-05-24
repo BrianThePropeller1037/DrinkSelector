@@ -53,3 +53,51 @@ button:hover {
   color: white;
   font-weight: bold;
 }
+
+/* 導覽列樣式 */
+.main-header {
+  background-color: #bc6c25;
+  padding: 10px 20px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-menu li a:hover {
+  text-decoration: underline;
+}
+
+.site-footer {
+  text-align: center;
+  background-color: #fef3c7;
+  padding: 20px;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #444;
+}
