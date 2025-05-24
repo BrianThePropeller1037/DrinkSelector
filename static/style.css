@@ -71,8 +71,8 @@ button:hover {
 }
 
 /* ⬇️ 加在這裡 */
-.heading-white {
-  color: white;
+.heading-black {
+  color: black;
   font-weight: bold;
   text-align: center;
 }
