@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>飲料推薦網頁版</title>
+</head>
+<body>
+    <h1>🍹 飲料推薦</h1>
+    <form id="form">
+        預算：<input type="number" name="budget" required><br>
+        店家：
+        <select name="store">
+            <option>全部店家</option>
+            {% for store in stores %}
+            <option>{{ store }}</option>
+            {% endfor %}
+        </select><br>
+        類別：
+        <select name="category">
+            <option>不限</option>
+            <option>奶茶類</option>
+            <option>純茶類</option>
+            <option>水果類</option>
+            <option>其他</option>
+        </select><br><br>
+        <button type="submit">幫我想想！</button>
+    </form>
+    <div id="result"></div>
 
+    <script>
+    document.getElementById('form').onsubmit = async function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const res = await fetch('/suggest', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        if (data.error) {
+            document.getElementById('result').innerText = data.error;
+        } else {
+            document.getElementById('result').innerText =
+                `推薦：${data.store} 的「${data.drink}」\n價格：$${data.price}，分類：${data.category}`;
+        }
+    };
+    </script>
+</body>
+</html>
